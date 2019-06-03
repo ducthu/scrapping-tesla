@@ -1,22 +1,15 @@
 const express = require("express");
 const app = express();
-const http = require("http");
 const port = 4000;
+const cors = require("cors");
 
-const scrappingService = require("./services/scrapping.service");
+const CronService = require("./services/cron.service");
+CronService.initCron();
 
-scrappingService
-  .run()
-  .then(data => {
-    console.log("all urls: " + data);
-  })
-  .catch(console.error);
+app.use(cors());
 
 // ROUTERS
-app.use("/tesla", require("./controllers/tesla.controller"));
-app.use("/boncoin", require("./controllers/boncoin.controller"));
-
-// GESTION DES ERREURS
+app.use("/api", require("./controllers/tesla.controller"));
 
 app.listen(port, () => {
   console.log("Listenning on port: " + port + " => http://localost:" + port);

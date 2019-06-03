@@ -2,9 +2,8 @@ const express = require("express");
 const router = express.Router();
 const teslaService = require("../services/tesla.service");
 
-router.get("/all", getAll);
-router.get("/:id", getById);
-router.delete("/:id", remove);
+router.get("/annonces", getAll);
+router.get("/annonce/:id", getById);
 
 module.exports = router;
 
